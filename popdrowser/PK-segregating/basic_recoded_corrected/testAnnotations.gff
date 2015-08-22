@@ -1,0 +1,18 @@
+3R	FlyBase	gene	354	1200	.	+	.	ID=FBgn0037213;Name=CG12581;Ontology_term=SO:0000010,SO:0000087;Dbxref=FlyBase:FBan0012581,FlyBase_Annotation_IDs:CG12581,GB:AA695505,GB:AA804076,GB:AA941257,GB:AW941182,GB:AW942727,GB:AY059451,GB_protein:AAL13357,GB:AY070849,GB_protein:AAL48471,UniProt/TrEMBL:Q9VMY3,GB_protein:AAF52174,GB_protein:AAN13329,OrthoDB6_Drosophila:EOG6BK5PD,OrthoDB6_Diptera:EOG6PCB1C,OrthoDB6_Insecta:EOG673NN9,OrthoDB6_Arthropoda:EOG6VHHPC,OrthoDB6_Metazoa:EOG67HJHT,EntrezGene:40522,BDGP_clone:GM02933,UniProt/TrEMBL:Q95TE1,UniProt/TrEMBL:Q8T953,InterologFinder:40522,BIOGRID:65746,FlyAtlas:CG12581-RB,GenomeRNAi:40522;gbunit=AE014297;derived_computed_cyto=81F5-81F6
+3R	FlyBase	mRNA	354	1200	.	+	.	ID=FBtr0078961;Name=CG12581-RB;Parent=FBgn0037213;Dbxref=FlyBase_Annotation_IDs:CG12581-RB,REFSEQ:NM_164313;score_text=Moderately Supported;score=7
+3R	FlyBase	mRNA	354	900	.	+	.	ID=FBtr0078962;Name=CG12581-RA;Parent=FBgn0037213;Dbxref=FlyBase_Annotation_IDs:CG12581-RA,REFSEQ:NM_141178;score_text=Strongly Supported;score=15
+3R	FlyBase	five_prime_UTR	354	400	.	+	.	ID=five_prime_UTR_FBgn0037213:2_256;Name=CG12581-u5;Parent=FBtr0078962;parent_type=mRNA
+3R	FlyBase	five_prime_UTR	354	360	.	+	.	ID=five_prime_UTR_FBgn0037213:1_256;Name=CG12581-u5;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	intron	361	380	.	+	.	ID=intron_FBgn0037213:1_FBgn0037213:3;Name=CG12581-in;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	five_prime_UTR	381	400	.	+	.	ID=five_prime_UTR_FBgn0037213:3_256;Name=CG12581-u5;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	CDS	401	599	.	+	0	ID=CDS_FBgn0037213:2_256;Name=CG12581-cds;Parent=FBtr0078962;parent_type=mRNA
+3R	FlyBase	CDS	401	698	.	+	0	ID=CDS_FBgn0037213:3_256;Name=CG12581-cds;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	intron	600	630	.	+	.	ID=intron_FBgn0037213:2_FBgn0037213:4;Name=CG12581-in;Parent=FBtr0078962;parent_type=mRNA
+3R	FlyBase	intron	699	750	.	+	.	ID=intron_FBgn0037213:3_FBgn0037213:4;Name=CG12581-in;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	CDS	631	700	.	+	2	ID=CDS_FBgn0037213:4_256;Name=CG12581-cds;Parent=FBtr0078961,FBtr0078962;parent_type=mRNA
+3R	FlyBase	intron	701	730	.	+	.	ID=intron_FBgn0037213:4_FBgn0037213:5;Name=CG12581-in;Parent=FBtr0078962;parent_type=mRNA
+3R	FlyBase	intron	699	800	.	+	.	ID=intron_FBgn0037213:4_FBgn0037213:6;Name=CG12581-in;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	CDS	731	851	.	+	0	ID=CDS_FBgn0037213:5_256;Name=CG12581-cds;Parent=FBtr0078962;parent_type=mRNA
+3R	FlyBase	CDS	801	999	.	+	0	ID=CDS_FBgn0037213:6_256;Name=CG12581-cds;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	three_prime_UTR	1000	1200	.	+	.	ID=three_prime_UTR_FBgn0037213:6_256;Name=CG12581-u3;Parent=FBtr0078961;parent_type=mRNA
+3R	FlyBase	three_prime_UTR	852	900	.	+	.	ID=three_prime_UTR_FBgn0037213:5_256;Name=CG12581-u3;Parent=FBtr0078962;parent_type=mRNA

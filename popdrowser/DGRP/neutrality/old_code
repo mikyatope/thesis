@@ -1,0 +1,97 @@
+=head1
+########
+#Sliding window Loop for pn and dn
+	for(my $i = 0; $i <= $len-1; $i = $i+$winsize) {
+		
+		#get slide for each sequence
+		my @working_seqs = ();
+		my $pn = 0;
+		my $dn = 0;
+		my $ps = 0;
+		my $ds = 0;
+		
+		foreach my $seq (@seqArray) {
+			my $window = substr($seq,$i,$winsize);
+			my @splited = split("",$window);
+			push(@working_seqs,[@splited]);
+		}
+
+		#Compare each ($p)position in the slide for each ($s)sequence
+		for $p ( 0 .. $#{$working_seqs[0]} ){
+			my @column = ();
+			for $s (2..$#working_seqs){
+				push (@column,$working_seqs[$s][$p]);
+			} 
+
+		#count Ds/Dn/Ps/Pn in the column;
+		my @As   = grep { uc($_) eq "A" } @column;
+		my @Ts   = grep { uc($_) eq "T" } @column;
+		my @Gs   = grep { uc($_) eq "G" } @column;
+		my @Cs   = grep { uc($_) eq "C" } @column;
+		my @Ns   = grep { uc($_) eq "N" } @column;
+		
+		my $outgrup = $working_seqs[1][$p];
+		my $recoded = $working_seqs[0][$p];
+		
+			if ($working_seqs[1][$p] ne "-") {    #discard gaps in outgrup
+			
+				### Find divergence -> count if only one nucleotide or only one with Ns
+				if ( scalar(@As) == $numseq || scalar(@As) + scalar(@Ns) == $numseq ) {
+					if ($outgrup ne "A"){
+						$recoded eq "4" ? $ds++ : $dn++;
+					}
+				} elsif ( scalar(@Ts) == $numseq || scalar(@Ts) + scalar(@Ns) == $numseq) {
+					if ($outgrup ne "T") {
+						$recoded eq "4" ? $ds++ : $dn++;
+					}
+				} elsif ( scalar(@Cs) == $numseq || scalar(@Cs) + scalar(@Ns) == $numseq) {
+					if ($outgrup ne "C") {
+						$recoded eq "4" ? $ds++ : $dn++;
+					}
+				} elsif ( scalar(@Gs) == $numseq || scalar(@Gs) + scalar(@Ns) == $numseq) {
+					if ($outgrup ne "G") {
+						$recoded eq "4" ? $ds++ : $dn++;
+					}
+				} else {
+					
+					### Find Polymorphism only
+					my @polys = ();
+					if (scalar(@As) < $numseq && scalar(@As) + scalar(@Ns) != $numseq && scalar(@As) != 0){
+						push(@polys,"A"); 
+					} 
+					if (scalar(@Ts) < $numseq && scalar(@Ts) + scalar(@Ns) != $numseq && scalar(@Ts) != 0) {
+						push(@polys,"T"); 
+					} 
+					if (scalar(@Cs) < $numseq && scalar(@Cs) + scalar(@Ns) != $numseq && scalar(@Cs) != 0){
+						push(@polys,"C"); 
+					} 
+					if (scalar(@Gs) < $numseq && scalar(@Gs) + scalar(@Ns) != $numseq && scalar(@Gs) != 0){
+						push(@polys,"G"); 
+					}
+
+					if (scalar(@polys) >= 2){
+							foreach my $nucl (@polys){
+							if ($nucl eq $outgrup ){
+								$recoded eq "4" ? $ps++ : $pn++;
+								last;
+							}
+						}
+					}
+					###
+				}
+			}
+		}
+		
+		#Calculate Neutrality
+		my $numsites = $#{$working_seqs[0]}+1;
+		$dn = JC_correction($numsites,$dn);
+		$ds = JC_correction($numsites,$ds);
+		
+		my ($chi_square, $p_value, $NI, $alpha) = CalculateNeutrality($ps, $pn, $ds, $dn);
+		
+		#output data
+		#print "$ps, $ds, $dn, $pn \n";
+		#$p_value < 0.05 ? print $NI."\n" : print "NULL\n";
+		print "$NI - $p_value\n";
+	}
+=cut
